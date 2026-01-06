@@ -591,15 +591,16 @@ class ConfigManager(Gtk.Window):
                     if comment:
                         lines.append(f'# {comment}')
                     value = self.get_widget_value(key)
+                    print(f"DEBUG_SAVE: {key} = {value!r} (type: {type(value).__name__})")
                     
-                    if isinstance(value, str) and value is not None:
-                        # Quote string values
-                        lines.append(f'{key} = "{value}"')
-                    elif value is None:
+                    if value is None:
                         # Handle None/empty
                         lines.append(f'{key} =   # Language code (en, es, fr, de, etc.) or None for auto-detect')
+                    elif isinstance(value, str):
+                        # Quote string values
+                        lines.append(f'{key} = "{value}"')
                     else:
-                        # Numeric or boolean
+                        # Numeric or boolean - write as-is
                         lines.append(f'{key} = {value}')
                 lines.append('')
             
