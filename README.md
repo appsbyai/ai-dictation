@@ -10,7 +10,6 @@ A system-wide voice dictation system for Linux that works anywhere. Press and ho
 - 🔒 **Privacy-focused**: No data sent to external servers
 - ⚡ **Fast**: Uses faster-whisper for efficient CPU transcription
 - 🖥️ **Wayland native**: Built for modern Linux desktop environments
-- ⚙️ **GTK Configuration Manager**: Easy GUI for managing settings and service control
 
 ## System Requirements
 
@@ -60,29 +59,7 @@ The transcribed text will appear at your current cursor position.
 
 ## Configuration
 
-You can configure AI Dictation using the **GTK Configuration Manager** (GUI) or by editing the configuration file directly.
-
-### Using the GTK Configuration Manager
-
-Launch the graphical configuration tool:
-```bash
-./configure.sh
-```
-
-Or directly:
-```bash
-./config_manager.py
-```
-
-The configuration manager provides:
-- **Visual interface** for all settings with tooltips and validation
-- **Service control** - Start, stop, restart, and view logs
-- **Real-time previews** of model sizes and performance impacts
-- **Safe editing** with error checking and backups
-
-### Manual Configuration
-
-All configuration is stored in `$HOME/.local/share/ai-dictation/config.py`:
+All configuration is stored in `$HOME/.local/share/ai-dictation/config.py`. Edit this file directly to customize your dictation system:
 
 ```python
 # Whisper Backend
