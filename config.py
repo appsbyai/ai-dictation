@@ -5,8 +5,8 @@ Modify these settings to customize the behavior
 
 # Whisper Model Configuration
 WHISPER_BACKEND = "faster-whisper"  # Options: "whisper.cpp" or "faster-whisper"
-WHISPER_MODEL = "medium"  # Options: tiny, base, small, medium, large, large-v3, turbo
-WHISPER_LANGUAGE = ""  # Language code (en, es, fr, de, etc.) or None for auto-detect
+WHISPER_MODEL = "turbo"  # Options: tiny, base, small, medium, large, large-v3, turbo
+WHISPER_LANGUAGE = "pt-br"  # Language code (en, es, fr, de, etc.) or None for auto-detect
 
 # GPU Configuration (faster-whisper only)
 USE_GPU = False  # Enable GPU acceleration (requires CUDA + cuDNN)
