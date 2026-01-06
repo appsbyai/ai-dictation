@@ -1,0 +1,3 @@
+# Udev rule to allow input group to access input devices
+# This allows members of the 'input' group to read/write to keyboard/mouse devices
+KERNEL=="event*", SUBSYSTEM=="input", MODE="0660", GROUP="input"
