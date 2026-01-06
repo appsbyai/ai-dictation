@@ -499,7 +499,16 @@ class ConfigManager(Gtk.Window):
                 value = ''
             widget.set_text(str(value).replace("'", "\"").strip())
         elif isinstance(widget, Gtk.SpinButton):
-            widget.set_value(value)
+            # Convert value to number (int or float) for SpinButton
+            try:
+                # Try int first, then float
+                if isinstance(value, str):
+                    num_value = int(value) if '.' not in value else float(value)
+                else:
+                    num_value = value
+                widget.set_value(num_value)
+            except (ValueError, TypeError):
+                widget.set_value(0)
         elif isinstance(widget, Gtk.Switch):
             widget.set_active(bool(value))
         elif isinstance(widget, Gtk.Scale):
