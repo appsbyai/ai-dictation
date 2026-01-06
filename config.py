@@ -9,7 +9,7 @@ WHISPER_MODEL = "small"
 WHISPER_LANGUAGE = "en"
 
 # GPU Configuration (faster-whisper only)
-USE_GPU = True
+USE_GPU = False
 GPU_COMPUTE_TYPE = "float16"
 
 # Audio Configuration
