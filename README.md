@@ -66,6 +66,11 @@ You can configure AI Dictation using the **GTK Configuration Manager** (GUI) or 
 
 Launch the graphical configuration tool:
 ```bash
+./configure.sh
+```
+
+Or directly:
+```bash
 ./config_manager.py
 ```
 
