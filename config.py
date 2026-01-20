@@ -5,11 +5,11 @@ Modify these settings to customize the behavior
 
 # Whisper Model Configuration
 WHISPER_BACKEND = "faster-whisper"
-WHISPER_MODEL = "small"
-WHISPER_LANGUAGE = "en"
+WHISPER_MODEL = "large-v3"
+WHISPER_LANGUAGE = None  # None = auto-detect language (English, Portuguese, etc.)
 
 # GPU Configuration (faster-whisper only)
-USE_GPU = False
+USE_GPU = True
 GPU_COMPUTE_TYPE = "float16"
 
 # Audio Configuration
@@ -27,7 +27,7 @@ WHISPER_CPP_THREADS = 8
 WHISPER_CPP_PROCESSORS = 1
 
 # Voice Activity Detection
-USE_VAD = True
+USE_VAD = False
 VAD_THRESHOLD = 0.5
 
 # Logging

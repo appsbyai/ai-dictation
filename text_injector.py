@@ -1,5 +1,6 @@
 """
-Text injection module using ydotool for direct typing
+Text injection module using DIRECT ydotool typing (no clipboard)
+This is your original working method - reinstated
 """
 
 import subprocess
@@ -19,12 +20,12 @@ class TextInjector:
     def __init__(self):
         """Initialize text injector"""
         self.delay_ms = TYPE_DELAY_MS
-        logger.info("Text injector initialized (using ydotool)")
+        logger.info("Text injector initialized (direct ydotool typing)")
 
     def type_text(self, text):
         """
-        Type text directly using ydotool
-
+        Type text directly using ydotool (your original working method)
+        
         Args:
             text: Text string to type
         """
