@@ -57,10 +57,16 @@ class DictationSystem:
                     # Check if device has RIGHT_CTRL key
                     keys = caps[ecodes.EV_KEY]
                     if ecodes.KEY_RIGHTCTRL in keys:
-                        # Skip YubiKey and similar security devices
-                        if 'yubikey' not in device.name.lower():
-                            keyboard_devices.append(device)
-                            logger.info(f"Found keyboard: {device.name} ({device.path})")
+                        # Skip virtual devices and security devices
+                        device_name_lower = device.name.lower()
+                        if ('virtual' in device_name_lower or
+                            'yubikey' in device_name_lower or
+                            'ydotoold' in device_name_lower):
+                            logger.info(f"Skipping virtual/special device: {device.name} ({device.path})")
+                            continue
+
+                        keyboard_devices.append(device)
+                        logger.info(f"Found keyboard: {device.name} ({device.path})")
 
             if not keyboard_devices:
                 logger.error("No suitable keyboard devices found!")
