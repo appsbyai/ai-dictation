@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 AI Dictation System for Linux (Wayland)
-Press and hold Right Ctrl to record voice, release to transcribe and type
+Tap Right Ctrl to start recording, tap again to stop and transcribe
 """
 
 import os
@@ -79,16 +79,18 @@ class DictationSystem:
         return keyboard_devices
 
     def handle_key_event(self, event):
-        """Handle key press/release events for RIGHT_CTRL"""
+        """Handle key press/release events for RIGHT_CTRL
+
+        Toggle mode: Tap RIGHT_CTRL to start recording, tap again to stop
+        """
         if event.code == ecodes.KEY_RIGHTCTRL:
             if event.value == 1:  # Key press
-                if not self.recording:
-                    logger.info("RIGHT_CTRL pressed - starting recording")
-                    self.start_recording()
-            elif event.value == 0:  # Key release
                 if self.recording:
-                    logger.info("RIGHT_CTRL released - stopping recording")
+                    logger.info("RIGHT_CTRL tapped - stopping recording")
                     self.stop_recording()
+                else:
+                    logger.info("RIGHT_CTRL tapped - starting recording (tap again to stop)")
+                    self.start_recording()
 
     def start_recording(self):
         """Start audio recording"""
@@ -140,7 +142,7 @@ class DictationSystem:
     def run(self):
         """Main run loop"""
         logger.info("Starting AI Dictation System...")
-        logger.info("Press and hold RIGHT_CTRL to dictate")
+        logger.info("Tap RIGHT_CTRL to start recording, tap again to stop")
 
         # Find all keyboard devices
         keyboards = self.find_keyboard_devices()
