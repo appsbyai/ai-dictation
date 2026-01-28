@@ -32,6 +32,8 @@ class DictationSystem:
         self.audio_queue = queue.Queue()
         self.model = None
         self.audio_recorder = None
+        self.last_toggle_time = 0
+        self.debounce_delay = 0.5  # 500ms debounce
 
         # Import modules
         from audio_recorder import AudioRecorder
@@ -83,14 +85,22 @@ class DictationSystem:
 
         Toggle mode: Tap RIGHT_CTRL to start recording, tap again to stop
         """
-        if event.code == ecodes.KEY_RIGHTCTRL:
-            if event.value == 1:  # Key press
-                if self.recording:
-                    logger.info("RIGHT_CTRL tapped - stopping recording")
-                    self.stop_recording()
-                else:
-                    logger.info("RIGHT_CTRL tapped - starting recording (tap again to stop)")
-                    self.start_recording()
+        if event.code == ecodes.KEY_RIGHTCTRL and event.value == 1:  # Only key press
+            current_time = time.time()
+            
+            # Debounce check - ignore rapid successive events
+            if current_time - self.last_toggle_time < self.debounce_delay:
+                logger.debug(f"Ignoring rapid key event (debounce)")
+                return
+                
+            self.last_toggle_time = current_time
+            
+            if self.recording:
+                logger.info("RIGHT_CTRL tapped - stopping recording")
+                self.stop_recording()
+            else:
+                logger.info("RIGHT_CTRL tapped - starting recording (tap again to stop)")
+                self.start_recording()
 
     def start_recording(self):
         """Start audio recording"""
